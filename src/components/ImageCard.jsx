@@ -1,7 +1,7 @@
-export default function ImageCard({ image, onClick }) {
+export default function ImageCard({ image,}) {
   return (
-    <div onClick={onClick}>
-      <img src={image.urls.small} alt={image.alt_description} />
+    <div onClick>
+      <img width={250} src={image.thumbnail} alt={image.title} />
     </div>
   );
 }

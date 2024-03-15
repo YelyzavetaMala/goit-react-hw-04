@@ -1,13 +1,18 @@
 import ImageCard from './ImageCard';
 
-export default function ImageGallery({ images, onImageClick }) {
+export default function ImageGallery({ images = null }) {
   return (
     <ul>
-      {images.map((image) => (
-        <li key={image.id}>
-          <ImageCard image={image} onClick={() => onImageClick(image)} />
-        </li>
-      ))}
+       {images !== null &&
+        Array.isArray(images) &&
+        images.map((image) => {
+          return (
+            <li key={image.id}>
+              <ImageCard />
+              
+            </li>
+          );
+        })}
     </ul>
   );
 }

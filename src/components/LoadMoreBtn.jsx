@@ -1,3 +1,8 @@
 export default function LoadMoreBtn({ onClick }) {
-  return <button onClick={onClick}>Load more</button>;
+  const handleButtonClick = () => {
+    onClick(); 
+   };
+  return (
+    <button onClick={handleButtonClick}>Load more</button>
+  );
 }
