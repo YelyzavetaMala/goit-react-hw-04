@@ -9,9 +9,7 @@ import ImageModal from './components/ImageModal'
 import './App.css'
 
 
-
 const App = () => {
-
   const [images, setImages] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -24,7 +22,6 @@ const App = () => {
       try {
         setIsLoading(true);
         const data = await requestImages();
-
         setImages(data.images);
       } catch (err) {
         setIsError(true);
@@ -61,6 +58,7 @@ const App = () => {
   const onSetSearchBar = (query) => {
     setSearchBar(query);
   };
+
   const loadMoreImages = () => {
     setPage((prevPage) => prevPage + 1);
   };
@@ -87,5 +85,4 @@ const App = () => {
     </div>
   );
 };
-
 export default App;
