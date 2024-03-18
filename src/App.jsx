@@ -57,6 +57,7 @@ const App = () => {
 
   const onSetSearchBar = (query) => {
     setSearchBar(query);
+    setPage(1); 
   };
 
   const loadMoreImages = () => {
@@ -77,7 +78,7 @@ const App = () => {
 
       {isError && <ErrorMessage />}
       {isLoading && <Loader />}
-      <ImageGallery images={images} onImageClick={openModal} />
+      {images && <ImageGallery images={images} onImageClick={openModal} />}
       {images && <LoadMoreBtn onClick={loadMoreImages} />}
       {selectedImage && <ImageModal isOpen={true} onClose={closeModal} image={selectedImage} />}
     </div>
