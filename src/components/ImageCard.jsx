@@ -3,8 +3,8 @@ export default function ImageCard({ image, onClick }) {
     onClick(image);
   };
   return (
-    <div onClick>
-      <img width={250} src={image.urls.regular} alt={image.alt_description} onClick={handleClick} />
+    <div onClick={handleClick}>
+      <img width={250} src={image.urls.small} alt={image.alt_description} onClick={(e) => e.stopPropagation()} />
     </div>
   );
 }

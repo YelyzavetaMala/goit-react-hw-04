@@ -22,7 +22,7 @@ const App = () => {
       try {
         setIsLoading(true);
         const data = await requestImages();
-        setImages(data.images);
+        setImages(data.results);
       } catch (err) {
         setIsError(true);
       } finally {
@@ -31,7 +31,7 @@ const App = () => {
     }
 
     fetchData();
-  }, []);
+  }, []); 
 
   useEffect(() => {
     if (searchBar === '') return;
@@ -41,9 +41,9 @@ const App = () => {
         setIsLoading(true);
         const data = await requestImagesByBar(searchBar, page);
         if (page === 1) {
-          setImages(data.images);
+          setImages(data.results);
         } else {
-          setImages((prevImages) => [...prevImages, ...data.images]);
+          setImages((prevImages) => [...prevImages, ...data.results]);
         }
       } catch (err) {
         setIsError(true);
@@ -53,7 +53,7 @@ const App = () => {
     }
 
     fetchDataByBar();
-  }, [searchBar, page]);
+  }, [searchBar, page]); 
 
   const onSetSearchBar = (query) => {
     setSearchBar(query);
@@ -79,10 +79,9 @@ const App = () => {
       {isLoading && <Loader />}
       <ImageGallery images={images} onImageClick={openModal} />
       {images && <LoadMoreBtn onClick={loadMoreImages} />}
-      {selectedImage && (
-        <ImageModal isOpen={true} onClose={closeModal} image={selectedImage} />
-      )}
+      {selectedImage && <ImageModal isOpen={true} onClose={closeModal} image={selectedImage} />}
     </div>
   );
 };
+
 export default App;
