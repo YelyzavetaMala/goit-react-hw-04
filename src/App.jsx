@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { requestImages, requestImagesByBar } from './services/api';
+import { requestImagesByBar } from './services/api';
 import SearchBar from './components/SearchBar'
 import ImageGallery from './components/ImageGallery'
 import Loader from './components/Loader'
@@ -16,22 +16,6 @@ const App = () => {
   const [searchBar, setSearchBar] = useState('');
   const [page, setPage] = useState(1);
   const [selectedImage, setSelectedImage] = useState(null);
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        setIsLoading(true);
-        const data = await requestImages();
-        setImages(data.results);
-      } catch (err) {
-        setIsError(true);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    fetchData();
-  }, []); 
 
   useEffect(() => {
     if (searchBar === '') return;
@@ -78,7 +62,7 @@ const App = () => {
 
       {isError && <ErrorMessage />}
       {isLoading && <Loader />}
-      {images && <ImageGallery images={images} onImageClick={openModal} />}
+      {images !== null && Array.isArray(images) && <ImageGallery images={images} onImageClick={openModal} />}
       {images && <LoadMoreBtn onClick={loadMoreImages} />}
       {selectedImage && <ImageModal isOpen={true} onClose={closeModal} image={selectedImage} />}
     </div>
